@@ -62,7 +62,7 @@ const Recognition = () => {
       for (let i = 0; i < predictions.length; i++) {
         const start = predictions[i].topLeft;
         const end = predictions[i].bottomRight;
-        const size = [end[0] - start[0], end[1] - start[1]];
+        const size = [end[0] - start[0] , end[1] - start[1] ];
 
         // Render a rectangle over each detected face.
 
@@ -110,15 +110,14 @@ const Recognition = () => {
           console.log(response.data.message);
           if (response.data.status == 200) {
             const userInfo = response.data.data[0];
-
             userAttendance.push(userInfo);
-
+            
             const attendanceTagList = userAttendance.map((item, key) => (
               <div
                 className="grid grid-cols-3 gap-2 bg-slate-100 p-2 rounded-md mt-1"
                 key={key}
               >
-                <img className="shadow-sm rounded-sm" src={pictureSrc} />
+                <img className="shadow-sm rounded-sm" src={item.face_image} />
                 <div className="col-span-2">
                   <span className="inline-flex gap-1">
                     <BiUser className="text-gray-500" />
@@ -183,7 +182,7 @@ const Recognition = () => {
 
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl  ">
-      <Header category="Page" title="Trainning" />
+      <Header category="Page" title="Recognition" />
       <div className="w-full grid grid-cols-4">
         {/* <video className='scale-x-[-1]' ref={videoRef}></video> */}
         {
